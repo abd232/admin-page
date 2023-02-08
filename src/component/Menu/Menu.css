@@ -1,0 +1,61 @@
+  .herff {
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-family: arial;
+    font-size: 1.5rem;
+    background-color: #5b64c7;
+    border-color: #5b64c7;
+    border-right: #5b64c7;
+    border-bottom: #5b64c7;
+    border-top: #5b64c7;
+    border-width: 0;
+    cursor: pointer;
+  }
+  .herff:hover {
+    background-color: #383d7a;
+    border-color: #0f112d;
+    border-right: #0f112d;
+    border-bottom: #0f112d;
+    border-top: #0f112d;
+  }
+  .list {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  .list1 {
+    display: block;
+    color:aliceblue;
+    margin-bottom: 2px;
+    cursor: pointer;
+  }
+  .MenuContainer {
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .menul {
+    list-style-type: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    align-items: center;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    background-color: #5b64c7;
+  }
+  .menul1 {
+    list-style-type: none;
+    display: block;
+    position: absolute;
+    padding-left: 0;
+    width:132px;
+    background: rgba(0,0,0,0.8);
+  }
+  .Hide1 {
+    display: none;
+  }
+
