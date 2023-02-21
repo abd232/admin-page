@@ -1,0 +1,15 @@
+
+{
+    "data": [
+            {
+                "id": 1,
+                "money_amount": 100,
+                "date_of_donating": "15/11/2022",
+                "email": "abdo-ss1@hotmail.com",
+                "card_number": 1216516,
+                "card_holder": "Abdallah Abdalrhman",
+                "money_unit": "dollar"
+            }
+        ]
+}
+    

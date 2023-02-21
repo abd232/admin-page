@@ -26,13 +26,11 @@ const DrugTable = () => {
 
     let emptyDrug = {
         id: null,
-        drugName: '',
-        genericNames: null,
-        price: 0,
-        doseType: '',
-        company: null
+        drug_name: '',
+        generic_names: '',
+        dose_type: '',
+        company: ''
     };
-
     const [Drugs, setDrugs] = useState(null);
     const [DrugDialog, setDrugDialog] = useState(false);
     const [deleteDrugDialog, setDeleteDrugDialog] = useState(false);
@@ -75,7 +73,7 @@ const DrugTable = () => {
     const saveDrug = () => {
         setSubmitted(true);
 
-        if (Drug.name.trim()) {
+        if (Drug.drug_name.trim()) {
             let _Drugs = [...Drugs];
             let _Drug = {...Drug};
             if (Drug.id) {
@@ -128,12 +126,7 @@ const DrugTable = () => {
     }
 
     const createId = () => {
-        let id = '';
-        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
+        return 5222222;
     }
 
     const importCSV = (e) => {
@@ -289,10 +282,9 @@ const DrugTable = () => {
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Drugs"
                     globalFilter={globalFilter} header={header} responsiveLayout="scroll">
                     <Column selectionMode="multiple" headerStyle={{ width: '3rem' }} exportable={false}></Column>
-                    <Column field="drugName" header="drug name" sortable style={{ minWidth: '12rem' }}></Column>
-                    <Column field="genericNames" header="generic names" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="price" header="Price" body={priceBodyTemplate} sortable style={{ minWidth: '8rem' }}></Column>
-                    <Column field="doseType" header="Dose Type" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="drug_name" header="drug name" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="generic_names" header="generic names" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="dose_type" header="Dose Type" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="company" header="Company" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '8rem' }}></Column>
                 </DataTable>
@@ -301,47 +293,26 @@ const DrugTable = () => {
             <Dialog visible={DrugDialog} style={{ width: '450px' }} header="Drug Details" modal className="p-fluid" footer={DrugDialogFooter} onHide={hideDialog}>
                 {Drug.image && <img src={`images/Drug/${Drug.image}`} onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={Drug.image} className="Drug-image block m-auto pb-3" />}
                 <div className="field">
-                    <label htmlFor="name">Name</label>
-                    <InputText id="name" value={Drug.name} onChange={(e) => onInputChange(e, 'name')} required autoFocus className={classNames({ 'p-invalid': submitted && !Drug.name })} />
-                    {submitted && !Drug.name && <small className="p-error">Name is required.</small>}
+                    <label htmlFor="drug_name">drug name</label>
+                    <InputText id="drug_name" value={Drug.drug_name} onChange={(e) => onInputChange(e, 'drug_name')} required autoFocus className={classNames({ 'p-invalid': submitted && !Drug.drug_name })} />
+                    {submitted && !Drug.drug_name && <small className="p-error">drug name is required.</small>}
                 </div>
                 <div className="field">
-                    <label htmlFor="description">Description</label>
-                    <InputTextarea id="description" value={Drug.description} onChange={(e) => onInputChange(e, 'description')} required rows={3} cols={20} />
+                    <label htmlFor="generic_names">generic names</label>
+                    <InputText id="generic_names" value={Drug.generic_names} onChange={(e) => onInputChange(e, 'generic_names')} required autoFocus className={classNames({ 'p-invalid': submitted && !Drug.generic_names })} />
+                    {submitted && !Drug.generic_names && <small className="p-error">generic names is required.</small>}
                 </div>
-
                 <div className="field">
-                    <label className="mb-3">Category</label>
-                    <div className="formgrid grid">
-                        <div className="field-radiobutton col-6">
-                            <RadioButton inputId="category1" name="category" value="Accessories" onChange={onCategoryChange} checked={Drug.category === 'Accessories'} />
-                            <label htmlFor="category1">Accessories</label>
-                        </div>
-                        <div className="field-radiobutton col-6">
-                            <RadioButton inputId="category2" name="category" value="Clothing" onChange={onCategoryChange} checked={Drug.category === 'Clothing'} />
-                            <label htmlFor="category2">Clothing</label>
-                        </div>
-                        <div className="field-radiobutton col-6">
-                            <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={Drug.category === 'Electronics'} />
-                            <label htmlFor="category3">Electronics</label>
-                        </div>
-                        <div className="field-radiobutton col-6">
-                            <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={Drug.category === 'Fitness'} />
-                            <label htmlFor="category4">Fitness</label>
-                        </div>
-                    </div>
+                    <label htmlFor="dose_type">dose type</label>
+                    <InputText id="dose_type" value={Drug.dose_type} onChange={(e) => onInputChange(e, 'dose_type')} required autoFocus className={classNames({ 'p-invalid': submitted && !Drug.dose_type })} />
+                    {submitted && !Drug.dose_type && <small className="p-error">dose type is required.</small>}
                 </div>
-
-                <div className="formgrid grid">
-                    <div className="field col">
-                        <label htmlFor="price">Price</label>
-                        <InputNumber id="price" value={Drug.price} onValueChange={(e) => onInputNumberChange(e, 'price')} mode="currency" currency="USD" locale="en-US" />
-                    </div>
-                    <div className="field col">
-                        <label htmlFor="quantity">Quantity</label>
-                        <InputNumber id="quantity" value={Drug.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} integeronly />
-                    </div>
+                <div className="field">
+                    <label htmlFor="company">company</label>
+                    <InputText id="company" value={Drug.company} onChange={(e) => onInputChange(e, 'company')} required autoFocus className={classNames({ 'p-invalid': submitted && !Drug.company })} />
+                    {submitted && !Drug.company && <small className="p-error">company is required.</small>}
                 </div>
+                
             </Dialog>
 
             <Dialog visible={deleteDrugDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteDrugDialogFooter} onHide={hideDeleteDrugDialog}>
